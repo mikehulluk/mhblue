@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://mikehulluk.github.io/mhblue/sitemap.xml 
