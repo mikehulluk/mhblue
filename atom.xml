@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Neuronal Simulation on BlueHive]]></title>
+  <title><![CDATA[Neuronal Simulation on Bluehive Hardware]]></title>
   <link href="http://mikehulluk.github.io/mhblue/atom.xml" rel="self"/>
   <link href="http://mikehulluk.github.io/mhblue/"/>
-  <updated>2013-06-03T14:24:59+01:00</updated>
+  <updated>2013-06-04T10:22:56+01:00</updated>
   <id>http://mikehulluk.github.io/mhblue/</id>
   <author>
     <name><![CDATA[Mike Hull]]></name>
@@ -14,11 +14,61 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Project Plans]]></title>
+    <title type="html"><![CDATA[Initial plans]]></title>
     <link href="http://mikehulluk.github.io/mhblue/blog/2013/06/03/project-plans/"/>
     <updated>2013-06-03T14:23:00+01:00</updated>
     <id>http://mikehulluk.github.io/mhblue/blog/2013/06/03/project-plans</id>
-    <content type="html"><![CDATA[<p>Project Plans&hellip;</p>
+    <content type="html"><![CDATA[<p>One of the main aims of this project is to explore the issues surrounding how simulations of nervous systems, composed of interconnected neurons, can be solved efficiently on electronic hardware.</p>
+
+<p>To begin this project, I will start by:
+a) Spending a few hours sitting down with the collaborators in the group working on the FPGAs, in order to understand the toolchain and how code is uploaded and run on the chips.
+b) Come up with a simple C-model that can be used as basis for hand-mapping
+onto the FPGA&rsquo;s. My plan is a small simulation of small numbers of different
+types of (HH-type) neurons, synapses and gap junctions. The idea here is
+understand the basic principles of how these can be mapped onto the FPGA. I
+will start by looking at the C-tadpole model written by colleagues at the
+University of Plymouth group. If this is more complex than what we need, I
+think its only a couple of days work to reduce it to its bare-bones and write
+it from scratch C. This will give us a simple test-case to work against.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Project Overview]]></title>
+    <link href="http://mikehulluk.github.io/mhblue/blog/2013/06/03/introduction/"/>
+    <updated>2013-06-03T14:00:00+01:00</updated>
+    <id>http://mikehulluk.github.io/mhblue/blog/2013/06/03/introduction</id>
+    <content type="html"><![CDATA[<p>From snails to scorpions to sea-lions, the nervous systems of animals play a
+central role in generating behaviours. Nervous systems are though to be
+composed of billions of specialised nerve cells, or <em>neurons</em>.  These neurons
+have remarkable electrical properties and can actively respond to certain types
+of stimulation.  Neurons can connect together either via direct electrical
+connections, or via more complex chemical synapses.  In more complex animals,
+like mammals, one hypothesis is that information is encoded in electrical
+signals in the brain and that the different types of neurons and the specific
+connections between them allows incoming sensory information to be filtered and
+processed.</p>
+
+<p>In the nervous systems of simpler animals, such as leechs and crabs, it has
+been possible to isolate parts of the nervous systems that generate specific
+behaviours such as the heartbeat and chewing in the stomach, MORE&hellip;.</p>
+
+<p>Over the last few decades, dramatic developments in experimental techniques
+have made it possible to investigate what gives neurons their active electrical
+properties, and it has been possible to build mathematical models to predict
+their responses to stimulation, as well as the how neurons interact with each
+other.</p>
+
+<p>Since we can model the individual components, and the interactions between
+them, a natural question to ask is do our models of nervous systems generate
+similar outputs to those seen experimentally? Is the whole really the sum of
+the parts?  Unfortunately, these systems are mathematically non-tractable and
+need to be solved by simulation.</p>
+
+<p>Unfortunately, these systems can also be large! The human nervous system
+contains XX neurons. We need to find efficient ways to run our simulations. One
+approach we will try to exploit is that neuronal systems seem to be
+<em>embarrassingly parallel</em>, &hellip; MORE</p>
 ]]></content>
   </entry>
   
