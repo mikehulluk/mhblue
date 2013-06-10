@@ -4,7 +4,7 @@
   <title><![CDATA[Neuronal Simulation on Bluehive Hardware]]></title>
   <link href="http://mikehulluk.github.io/mhblue/atom.xml" rel="self"/>
   <link href="http://mikehulluk.github.io/mhblue/"/>
-  <updated>2013-06-04T10:31:31+01:00</updated>
+  <updated>2013-06-10T08:56:29+01:00</updated>
   <id>http://mikehulluk.github.io/mhblue/</id>
   <author>
     <name><![CDATA[Mike Hull]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[C++ Implementation of tadpole swimming model]]></title>
+    <link href="http://mikehulluk.github.io/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model/"/>
+    <updated>2013-06-10T08:52:00+01:00</updated>
+    <id>http://mikehulluk.github.io/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model</id>
+    <content type="html"><![CDATA[<p><img src="images/week1/Voltage.png" alt="Alt text 1" />
+<img src="images/week1/Voltage_NMDA.png" alt="Alt text 2" />
+<img src="images/week1/Voltage_NMDA_EC.png" alt="Alt text 3" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Initial plans]]></title>
