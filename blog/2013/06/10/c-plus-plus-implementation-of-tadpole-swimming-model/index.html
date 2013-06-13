@@ -9,7 +9,9 @@
   <meta name="author" content="Mike Hull">
 
   
-  <meta name="description" content=" ">
+  <meta name="description" content="Having looked at the C-code for the tadpole swimming model written
+by our colleagues in Plymouth, I decided that it would be simpler to
+reimplement &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,9 +93,47 @@
   </header>
 
 
-<div class="entry-content"><p><img src="images/week1/Voltage.png" alt="Alt text 1" />
-<img src="images/week1/Voltage_NMDA.png" alt="Alt text 2" />
-<img src="images/week1/Voltage_NMDA_EC.png" alt="Alt text 3" /></p>
+<div class="entry-content"><p>Having looked at the C-code for the tadpole swimming model written
+by our colleagues in Plymouth, I decided that it would be simpler to
+reimplement the model from scratch, rather than use the existing
+code base.</p>
+
+<p>I began with a slightly simplified version of the model for initial
+testing. During tadpole swimming, a population of interneurons on
+each side of the nervous systems with descending axons, (dINs), are
+the first neurosn to fire on each cycle. These neurons are central
+to swimming and also have some interesting features: a) they are
+electrically coupled via thier axons; and b) they make mutual feedback
+NMDA-receptor synapses back onto themselves.</p>
+
+<p>It is proposed that the feedback NMDA synapses allow the network to
+produce sustained activity following a brief stimulus. It is also
+proposed that the electrical coupling between the neurons causes
+thier activity to become synchronised.</p>
+
+<p>The C++ model runs on my desktop computer. The dIN population is 30
+neurons, but in the following graphs, the traces of 10 neurons are
+shown. In all cases, all neurons are given a step current injection of 50pA
+for t=0.05 to t=0.2 (times in milliseconds). All the neurons are given identical
+parameters, but there is variation in the network connectivity.</p>
+
+<p>In the first experiment, there is no NMDA and no electrical
+coupling. Activity is not sustained after the initial current injection.</p>
+
+<p><img src="week1/Voltage.png" alt="Alt text 1" /></p>
+
+<p>In the second experiment, there are feedback NMDA synapses, but no
+electrical coupling. Activity is sustained after the initial current
+injection, but it is not synchronised and the variation in the
+network connections mean it quickly becomes desynchronised.</p>
+
+<p><img src="week1/Voltage_NMDA.png" alt="Alt text 2" /></p>
+
+<p>In the third experiment, there are feedback NMDA synapses and
+electrical coupling between the neurons. Activity is sustained after the initial current
+injection, but it is synchronised.</p>
+
+<p><img src="week1/Voltage_NMDA_EC.png" alt="Alt text 3" /></p>
 </div>
 
 
@@ -136,6 +176,8 @@
         <a class="basic-alignment left" href="/mhblue/blog/2013/06/03/project-plans/" title="Previous Post: Initial plans">&laquo; Initial plans</a>
       
       
+        <a class="basic-alignment right" href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model-on-nios/" title="Next Post: C++ running the tadpole on the FPGA">C++ running the tadpole on the FPGA &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -149,11 +191,19 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model-on-nios/">C++ Running the Tadpole on the FPGA</a>
+      </li>
+    
+      <li class="post">
         <a href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model/">C++ Implementation of Tadpole Swimming Model</a>
       </li>
     
       <li class="post">
         <a href="/mhblue/blog/2013/06/03/project-plans/">Initial Plans</a>
+      </li>
+    
+      <li class="post">
+        <a href="/mhblue/blog/2013/06/03/tadpole-overview/">Tadpole Model</a>
       </li>
     
       <li class="post">

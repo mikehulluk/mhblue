@@ -2,25 +2,35 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://mikehulluk.github.io/mhblue/blog/2013/06/03/introduction/</loc>
-        <lastmod>2013-06-04T10:24:50+01:00</lastmod>
+        <lastmod>2013-06-13T13:06:32+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://mikehulluk.github.io/mhblue/blog/2013/06/03/tadpole-overview/</loc>
+        <lastmod>2013-06-13T12:48:45+01:00</lastmod>
     </url>
     <url>
         <loc>http://mikehulluk.github.io/mhblue/blog/2013/06/03/project-plans/</loc>
-        <lastmod>2013-06-04T10:31:25+01:00</lastmod>
+        <lastmod>2013-06-13T11:22:44+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://mikehulluk.github.io/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model/
         </loc>
-        <lastmod>2013-06-10T08:56:20+01:00</lastmod>
+        <lastmod>2013-06-13T13:06:17+01:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://mikehulluk.github.io/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model-on-nios/
+        </loc>
+        <lastmod>2013-06-13T13:14:58+01:00</lastmod>
     </url>
     <url>
         <loc>http://mikehulluk.github.io/mhblue/blog/archives/</loc>
-        <lastmod>2013-06-10T08:56:20+01:00</lastmod>
+        <lastmod>2013-06-13T13:14:58+01:00</lastmod>
     </url>
     <url>
         <loc>http://mikehulluk.github.io/mhblue/</loc>
-        <lastmod>2013-06-10T08:56:20+01:00</lastmod>
+        <lastmod>2013-06-13T13:14:58+01:00</lastmod>
     </url>
     <url>
         <loc>http://mikehulluk.github.io/mhblue/robots.txt</loc>
