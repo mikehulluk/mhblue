@@ -1,3 +1,9 @@
+## Getting there!
+The documentation itself can be found here:
+
+http://mikehulluk.github.io/mhblue
+
+
 ## What is Octopress?
 
 Octopress is [Jekyll](https://github.com/mojombo/jekyll) blogging at its finest.
