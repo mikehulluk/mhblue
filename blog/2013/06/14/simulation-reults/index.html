@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Preliminary simulation results - Neuronal Simulation on Bluehive Hardware</title>
+  <meta name="author" content="Mike Hull">
+
+  
+  <meta name="description" content="It was possible to get the tadpole simulation to run on the NIOS processor.
+This is a reduced tadpole model of just 30 dINs (electrically coupled, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mikehulluk.github.io/mhblue/blog/2013/06/14/simulation-reults">
+  <link href="/mhblue/favicon.png" rel="icon">
+  <link href="/mhblue/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/mhblue/atom.xml" rel="alternate" title="Neuronal Simulation on Bluehive Hardware" type="application/atom+xml">
+  <script src="/mhblue/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/mhblue/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/mhblue/">Neuronal Simulation on Bluehive Hardware</a></h1>
+  
+    <h2>Realtime Tadpole?</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/mhblue/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mikehulluk.github.io/mhblue" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/mhblue/">Blog</a></li>
+  <li><a href="/mhblue/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Preliminary Simulation Results</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-14T16:40:00+01:00" pubdate data-updated="true">Jun 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>It was possible to get the tadpole simulation to run on the NIOS processor.
+This is a reduced tadpole model of just 30 dINs (electrically coupled, feedback NMDA)
+connected by excitatory AMPA synapses to a population of 5 passive neurons.</p>
+
+<p>The code runs very slowly on the NIOS at the moment. For 10000 time-steps (1s) &ndash; using GCC -02, the code runs
+almost instanteously on the desktop machine.</p>
+
+<p>On the NIOS, if I comment out the &lsquo;core loop&rsquo; for solving the update equations
+(i.e. leaving the electrical coupling, and synaptic message passing features
+on, then the code runs in ~15s</p>
+
+<p>If I turn on the core loop, it takes ~10mins to run.</p>
+
+<p>Below is some simulation traces from runnning on the NIOS.</p>
+
+<p>![week2/FriCPP_NIOS_ex1.png]
+![week2/FriCPP_NIOS_ex2.png]</p>
+
+<p>There are several possibilities for why this is running slowly &ndash; particularly surrounding how the
+NIOS and the memory are configured on the FPGA</p>
+
+<p>Some optimisation possibilities ahead!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Mike Hull</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-14T16:40:00+01:00" pubdate data-updated="true">Jun 14<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mikehulluk.github.io/mhblue/blog/2013/06/14/simulation-reults/" data-via="" data-counturl="http://mikehulluk.github.io/mhblue/blog/2013/06/14/simulation-reults/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model-on-nios/" title="Previous Post: C++ running the tadpole on the FPGA">&laquo; C++ running the tadpole on the FPGA</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/mhblue/blog/2013/06/14/simulation-reults/">Preliminary Simulation Results</a>
+      </li>
+    
+      <li class="post">
+        <a href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model-on-nios/">C++ Running the Tadpole on the FPGA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model/">C++ Implementation of Tadpole Swimming Model</a>
+      </li>
+    
+      <li class="post">
+        <a href="/mhblue/blog/2013/06/03/project-plans/">Initial Plans</a>
+      </li>
+    
+      <li class="post">
+        <a href="/mhblue/blog/2013/06/03/tadpole-overview/">Tadpole Model</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Mike Hull -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

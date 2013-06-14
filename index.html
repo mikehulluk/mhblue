@@ -9,9 +9,8 @@
   <meta name="author" content="Mike Hull">
 
   
-  <meta name="description" content="It was relatively painless to port a the version of C++ code running
-on my desktop to run a first version. NIOS ON FPGA.
-">
+  <meta name="description" content="It was possible to get the tadpole simulation to run on the NIOS processor.
+This is a reduced tadpole model of just 30 dINs (electrically coupled, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +66,63 @@ on my desktop to run a first version. NIOS ON FPGA.
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/mhblue/blog/2013/06/14/simulation-reults/">Preliminary Simulation Results</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-14T16:40:00+01:00" pubdate data-updated="true">Jun 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It was possible to get the tadpole simulation to run on the NIOS processor.
+This is a reduced tadpole model of just 30 dINs (electrically coupled, feedback NMDA)
+connected by excitatory AMPA synapses to a population of 5 passive neurons.</p>
+
+<p>The code runs very slowly on the NIOS at the moment. For 10000 time-steps (1s) &ndash; using GCC -02, the code runs
+almost instanteously on the desktop machine.</p>
+
+<p>On the NIOS, if I comment out the &lsquo;core loop&rsquo; for solving the update equations
+(i.e. leaving the electrical coupling, and synaptic message passing features
+on, then the code runs in ~15s</p>
+
+<p>If I turn on the core loop, it takes ~10mins to run.</p>
+
+<p>Below is some simulation traces from runnning on the NIOS.</p>
+
+<p>![week2/FriCPP_NIOS_ex1.png]
+![week2/FriCPP_NIOS_ex2.png]</p>
+
+<p>There are several possibilities for why this is running slowly &ndash; particularly surrounding how the
+NIOS and the memory are configured on the FPGA</p>
+
+<p>Some optimisation possibilities ahead!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -385,6 +441,10 @@ network models can be effectively parallelised.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/mhblue/blog/2013/06/14/simulation-reults/">Preliminary Simulation Results</a>
+      </li>
+    
+      <li class="post">
         <a href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model-on-nios/">C++ Running the Tadpole on the FPGA</a>
       </li>
     
@@ -398,10 +458,6 @@ network models can be effectively parallelised.</p>
     
       <li class="post">
         <a href="/mhblue/blog/2013/06/03/tadpole-overview/">Tadpole Model</a>
-      </li>
-    
-      <li class="post">
-        <a href="/mhblue/blog/2013/06/03/introduction/">Project Overview</a>
       </li>
     
   </ul>
