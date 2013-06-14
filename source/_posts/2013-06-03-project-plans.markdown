@@ -9,10 +9,13 @@ categories:
 
 
 
-One of the main aims of this project is to explore the issues surrounding how simulations of nervous systems, composed of interconnected neurons, can be solved efficiently on electronic hardware.
+One of the main aims of this project is to explore the issues 
+surrounding how simulations of nervous systems, composed of 
+interconnected neurons, can be solved efficiently on electronic 
+hardware.
 
 To begin this project, I will start by:
-j
+
 1. Spending a few hours sitting down with the collaborators in the group
    working on the FPGAs, in order to understand the toolchain and how code is
    uploaded and run on the chips.
