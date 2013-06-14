@@ -4,7 +4,7 @@
   <title><![CDATA[Neuronal Simulation on Bluehive Hardware]]></title>
   <link href="http://mikehulluk.github.io/mhblue/atom.xml" rel="self"/>
   <link href="http://mikehulluk.github.io/mhblue/"/>
-  <updated>2013-06-14T17:08:00+01:00</updated>
+  <updated>2013-06-14T17:16:10+01:00</updated>
   <id>http://mikehulluk.github.io/mhblue/</id>
   <author>
     <name><![CDATA[Mike Hull]]></name>
@@ -33,8 +33,9 @@ on, then the code runs in ~15s</p>
 
 <p>Below is some simulation traces from runnning on the NIOS.</p>
 
-<p><img src="week2/FriCPP_NIOS_ex1.png" alt="Alt text" />
-<img src="week2/FriCPP_NIOS_ex2.png" alt="Alt text" /></p>
+<p><img src="week2/FriCPP_NIOS_ex1.png" alt="Alt text" /></p>
+
+<p><img src="week2/FriCPP_NIOS_ex2.png" alt="Alt text" /></p>
 
 <p>There are several possibilities for why this is running slowly &ndash; particularly surrounding how the
 NIOS and the memory are configured on the FPGA</p>
