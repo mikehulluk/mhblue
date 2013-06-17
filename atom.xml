@@ -4,7 +4,7 @@
   <title><![CDATA[Neuronal Simulation on Bluehive Hardware]]></title>
   <link href="http://mikehulluk.github.io/mhblue/atom.xml" rel="self"/>
   <link href="http://mikehulluk.github.io/mhblue/"/>
-  <updated>2013-06-17T10:33:08+01:00</updated>
+  <updated>2013-06-17T10:48:24+01:00</updated>
   <id>http://mikehulluk.github.io/mhblue/</id>
   <author>
     <name><![CDATA[Mike Hull]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Optimising simulation on the NIOS II]]></title>
+    <link href="http://mikehulluk.github.io/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii/"/>
+    <updated>2013-06-17T10:35:00+01:00</updated>
+    <id>http://mikehulluk.github.io/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii</id>
+    <content type="html"><![CDATA[<p>It seemed likely that the slowly could come from one of 2 places: either a lot
+of cache misses leading to slow memory lookups for intructions &amp; data, or slow
+floating point calculations.</p>
+
+<p>I looked again at the NIOS II settings, and foudn the defaults for the cache sizes were small and so increased them. I also enabled hardware division on the NIOS II.</p>
+
+<p>Rerunning the simulation now took:</p>
+
+<p>It seems as though floating point calculations are implemented in a software library on top of the integer operations.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Preliminary simulation results]]></title>

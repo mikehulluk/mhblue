@@ -9,8 +9,8 @@
   <meta name="author" content="Mike Hull">
 
   
-  <meta name="description" content="It was possible to get the tadpole simulation to run on the NIOS processor.
-This is a reduced tadpole model of just 30 dINs (electrically coupled, &hellip;">
+  <meta name="description" content="It seemed likely that the slowly could come from one of 2 places: either a lot
+of cache misses leading to slow memory lookups for intructions &amp; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,50 @@ This is a reduced tadpole model of just 30 dINs (electrically coupled, &hellip;"
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii/">Optimising Simulation on the NIOS II</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-17T10:35:00+01:00" pubdate data-updated="true">Jun 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It seemed likely that the slowly could come from one of 2 places: either a lot
+of cache misses leading to slow memory lookups for intructions &amp; data, or slow
+floating point calculations.</p>
+
+<p>I looked again at the NIOS II settings, and foudn the defaults for the cache sizes were small and so increased them. I also enabled hardware division on the NIOS II.</p>
+
+<p>Rerunning the simulation now took:</p>
+
+<p>It seems as though floating point calculations are implemented in a software library on top of the integer operations.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -442,6 +486,10 @@ network models can be effectively parallelised.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii/">Optimising Simulation on the NIOS II</a>
+      </li>
+    
+      <li class="post">
         <a href="/mhblue/blog/2013/06/14/simulation-reults/">Preliminary Simulation Results</a>
       </li>
     
@@ -455,10 +503,6 @@ network models can be effectively parallelised.</p>
     
       <li class="post">
         <a href="/mhblue/blog/2013/06/03/project-plans/">Initial Plans</a>
-      </li>
-    
-      <li class="post">
-        <a href="/mhblue/blog/2013/06/03/tadpole-overview/">Tadpole Model</a>
       </li>
     
   </ul>

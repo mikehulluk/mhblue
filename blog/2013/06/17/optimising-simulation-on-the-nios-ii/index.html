@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Neuronal Simulation on Bluehive Hardware</title>
+  <title>Optimising simulation on the NIOS II - Neuronal Simulation on Bluehive Hardware</title>
   <meta name="author" content="Mike Hull">
 
   
-  <meta name="description" content="Blog Archive 2013 Optimising simulation on the NIOS II
-Jun 17 2013 Preliminary simulation results
-Jun 14 2013 C++ running the tadpole on the FPGA &hellip;">
+  <meta name="description" content="It seemed likely that the slowly could come from one of 2 places: either a lot
+of cache misses leading to slow memory lookups for intructions &amp; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +19,7 @@ Jun 14 2013 C++ running the tadpole on the FPGA &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://mikehulluk.github.io/mhblue/blog/archives">
+  <link rel="canonical" href="http://mikehulluk.github.io/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii">
   <link href="/mhblue/favicon.png" rel="icon">
   <link href="/mhblue/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/mhblue/atom.xml" rel="alternate" title="Neuronal Simulation on Bluehive Hardware" type="application/atom+xml">
@@ -66,91 +65,86 @@ Jun 14 2013 C++ running the tadpole on the FPGA &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Optimising Simulation on the NIOS II</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-17T10:35:00+01:00" pubdate data-updated="true">Jun 17<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>It seemed likely that the slowly could come from one of 2 places: either a lot
+of cache misses leading to slow memory lookups for intructions &amp; data, or slow
+floating point calculations.</p>
 
-  
-  <h2>2013</h2>
+<p>I looked again at the NIOS II settings, and foudn the defaults for the cache sizes were small and so increased them. I also enabled hardware division on the NIOS II.</p>
 
-<article>
-  
-<h1><a href="/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii/">Optimising simulation on the NIOS II</a></h1>
-<time datetime="2013-06-17T10:35:00+01:00" pubdate><span class='month'>Jun</span> <span class='day'>17</span> <span class='year'>2013</span></time>
+<p>Rerunning the simulation now took:</p>
 
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/mhblue/blog/2013/06/14/simulation-reults/">Preliminary simulation results</a></h1>
-<time datetime="2013-06-14T16:40:00+01:00" pubdate><span class='month'>Jun</span> <span class='day'>14</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model-on-nios/">C++ running the tadpole on the FPGA</a></h1>
-<time datetime="2013-06-10T09:52:00+01:00" pubdate><span class='month'>Jun</span> <span class='day'>10</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model/">C++ Implementation of tadpole swimming model</a></h1>
-<time datetime="2013-06-10T08:52:00+01:00" pubdate><span class='month'>Jun</span> <span class='day'>10</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/mhblue/blog/2013/06/03/project-plans/">Initial plans</a></h1>
-<time datetime="2013-06-03T14:23:00+01:00" pubdate><span class='month'>Jun</span> <span class='day'>03</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/mhblue/blog/2013/06/03/tadpole-overview/">Tadpole model</a></h1>
-<time datetime="2013-06-03T14:05:00+01:00" pubdate><span class='month'>Jun</span> <span class='day'>03</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/mhblue/blog/2013/06/03/introduction/">Project Overview</a></h1>
-<time datetime="2013-06-03T14:00:00+01:00" pubdate><span class='month'>Jun</span> <span class='day'>03</span> <span class='year'>2013</span></time>
-
-
-</article>
-
+<p>It seems as though floating point calculations are implemented in a software library on top of the integer operations.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Mike Hull</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-17T10:35:00+01:00" pubdate data-updated="true">Jun 17<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mikehulluk.github.io/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii/" data-via="" data-counturl="http://mikehulluk.github.io/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/mhblue/blog/2013/06/14/simulation-reults/" title="Previous Post: Preliminary simulation results">&laquo; Preliminary simulation results</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
