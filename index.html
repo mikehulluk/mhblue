@@ -9,8 +9,27 @@
   <meta name="author" content="Mike Hull">
 
   
-  <meta name="description" content="It seemed likely that the slowly could come from one of 2 places: either a lot
-of cache misses leading to slow memory lookups for intructions &amp; &hellip;">
+  <meta name="description" content="Results from profiling &ndash; 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+N2T-WRAP >> Done--Performance Counter Report--
+N2T-WRAP >> Total Time &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +91,107 @@ of cache misses leading to slow memory lookups for intructions &amp; &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii-Pt2/">Optimising Simulation on the NIOS II</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-17T10:35:00+01:00" pubdate data-updated="true">Jun 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Results from profiling &ndash;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>N2T-WRAP >> Done--Performance Counter Report--
+</span><span class='line'>N2T-WRAP >> Total Time: 35.4501 seconds  (7090029913 clock-cycles)
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> | Section       |  %  | Time (sec)|  Time (clocks)|Occurrences|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |::step()       | 97.5|   34.55897|     6911794887|       1000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN::step()    | 87.5|   31.00537|     6201074476|     100000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN~currents   | 15.4|    5.46835|     1093669374|     100000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN~states     | 71.8|   25.45252|     5090504637|     100000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN~dV         |0.193|    0.06850|       13700254|     100000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN~RC_AB      | 55.8|   19.77230|     3954459060|     400000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN~RC_ABB     | 15.1|    5.35172|     1070343960|     100000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Most of the time is being taken up with calculating the forward and backward
+rate constants. When these lines are removed and replaced with fixed values for inf and tau, the simulation time drops from  35s to 10s.</p>
+
+<p>N2T-WRAP >> Done&mdash;Performance Counter Report&mdash;
+N2T-WRAP >> Total Time: 10.3293 seconds  (2065860895 clock-cycles)
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> | Section       |  %  | Time (sec)|  Time (clocks)|Occurrences|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |::step()       | 92.8|    9.58454|     1916907904|       1000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN::step()    | 56.7|    5.85270|     1170539530|     100000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN~currents   | 53.5|    5.52568|     1105135584|     100000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN~states     | 2.35|    0.24302|       48603537|     100000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN~dV         |0.658|    0.06800|       13600242|     100000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN~RC_AB      |0.0484|    0.00500|        1000070|     400000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN~RC_ABB     |0.0194|    0.00200|         400058|     100000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>Interestingly,  RC_AB is taking nearly 10000 clock cycles!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii/">Optimising Simulation on the NIOS II</a></h1>
     
     
@@ -99,9 +219,9 @@ of cache misses leading to slow memory lookups for intructions &amp; &hellip;">
 of cache misses leading to slow memory lookups for intructions &amp; data, or slow
 floating point calculations.</p>
 
-<p>I looked again at the NIOS II settings, and foudn the defaults for the cache sizes were small and so increased them. I also enabled hardware division on the NIOS II.</p>
-
-<p>Rerunning the simulation now took:</p>
+<p>I looked again at the NIOS II settings, and foudn the defaults for the cache
+sizes were small and so increased them. I also enabled hardware division on the
+NIOS II.  Rerunning the simulation still took ~10 mins.</p>
 
 <p>It seems as though floating point calculations are implemented in a software library on top of the integer operations.</p>
 </div>
@@ -486,6 +606,10 @@ network models can be effectively parallelised.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii-Pt2/">Optimising Simulation on the NIOS II</a>
+      </li>
+    
+      <li class="post">
         <a href="/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii/">Optimising Simulation on the NIOS II</a>
       </li>
     
@@ -499,10 +623,6 @@ network models can be effectively parallelised.</p>
     
       <li class="post">
         <a href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model/">C++ Implementation of Tadpole Swimming Model</a>
-      </li>
-    
-      <li class="post">
-        <a href="/mhblue/blog/2013/06/03/project-plans/">Initial Plans</a>
       </li>
     
   </ul>

@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Optimising simulation on the NIOS II - Neuronal Simulation on Bluehive Hardware</title>
+  <meta name="author" content="Mike Hull">
+
+  
+  <meta name="description" content="Results from profiling &ndash; 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+N2T-WRAP >> Done--Performance Counter Report--
+N2T-WRAP >> Total Time &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mikehulluk.github.io/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii-Pt2">
+  <link href="/mhblue/favicon.png" rel="icon">
+  <link href="/mhblue/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/mhblue/atom.xml" rel="alternate" title="Neuronal Simulation on Bluehive Hardware" type="application/atom+xml">
+  <script src="/mhblue/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/mhblue/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/mhblue/">Neuronal Simulation on Bluehive Hardware</a></h1>
+  
+    <h2>Realtime Tadpole?</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/mhblue/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mikehulluk.github.io/mhblue" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/mhblue/">Blog</a></li>
+  <li><a href="/mhblue/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Optimising Simulation on the NIOS II</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-17T10:35:00+01:00" pubdate data-updated="true">Jun 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Results from profiling &ndash;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>N2T-WRAP >> Done--Performance Counter Report--
+</span><span class='line'>N2T-WRAP >> Total Time: 35.4501 seconds  (7090029913 clock-cycles)
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> | Section       |  %  | Time (sec)|  Time (clocks)|Occurrences|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |::step()       | 97.5|   34.55897|     6911794887|       1000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN::step()    | 87.5|   31.00537|     6201074476|     100000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN~currents   | 15.4|    5.46835|     1093669374|     100000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN~states     | 71.8|   25.45252|     5090504637|     100000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN~dV         |0.193|    0.06850|       13700254|     100000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN~RC_AB      | 55.8|   19.77230|     3954459060|     400000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
+</span><span class='line'>N2T-WRAP >> |dIN~RC_ABB     | 15.1|    5.35172|     1070343960|     100000|
+</span><span class='line'>N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Most of the time is being taken up with calculating the forward and backward
+rate constants. When these lines are removed and replaced with fixed values for inf and tau, the simulation time drops from  35s to 10s.</p>
+
+<p>N2T-WRAP >> Done&mdash;Performance Counter Report&mdash;
+N2T-WRAP >> Total Time: 10.3293 seconds  (2065860895 clock-cycles)
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> | Section       |  %  | Time (sec)|  Time (clocks)|Occurrences|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |::step()       | 92.8|    9.58454|     1916907904|       1000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN::step()    | 56.7|    5.85270|     1170539530|     100000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN~currents   | 53.5|    5.52568|     1105135584|     100000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN~states     | 2.35|    0.24302|       48603537|     100000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN~dV         |0.658|    0.06800|       13600242|     100000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN~RC_AB      |0.0484|    0.00500|        1000070|     400000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+N2T-WRAP >> |dIN~RC_ABB     |0.0194|    0.00200|         400058|     100000|
+N2T-WRAP >> +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>Interestingly,  RC_AB is taking nearly 10000 clock cycles!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Mike Hull</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-17T10:35:00+01:00" pubdate data-updated="true">Jun 17<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mikehulluk.github.io/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii-Pt2/" data-via="" data-counturl="http://mikehulluk.github.io/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii-Pt2/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii/" title="Previous Post: Optimising simulation on the NIOS II">&laquo; Optimising simulation on the NIOS II</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii-Pt2/">Optimising Simulation on the NIOS II</a>
+      </li>
+    
+      <li class="post">
+        <a href="/mhblue/blog/2013/06/17/optimising-simulation-on-the-nios-ii/">Optimising Simulation on the NIOS II</a>
+      </li>
+    
+      <li class="post">
+        <a href="/mhblue/blog/2013/06/14/simulation-reults/">Preliminary Simulation Results</a>
+      </li>
+    
+      <li class="post">
+        <a href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model-on-nios/">C++ Running the Tadpole on the FPGA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/mhblue/blog/2013/06/10/c-plus-plus-implementation-of-tadpole-swimming-model/">C++ Implementation of Tadpole Swimming Model</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Mike Hull -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
