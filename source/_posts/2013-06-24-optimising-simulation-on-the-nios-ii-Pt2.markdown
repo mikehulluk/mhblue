@@ -35,7 +35,7 @@ N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
 Most of the time is being taken up with calculating the forward and backward
 rate constants. When these lines are removed and replaced with fixed values for inf and tau, the simulation time drops from  35s to 10s.
 
-
+{% codeblock %}
 N2T-WRAP >> Done--Performance Counter Report--
 N2T-WRAP >> Total Time: 10.3293 seconds  (2065860895 clock-cycles)
 N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
@@ -55,8 +55,7 @@ N2T-WRAP >> |dIN~RC_AB      |0.0484|    0.00500|        1000070|     400000|
 N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
 N2T-WRAP >> |dIN~RC_ABB     |0.0194|    0.00200|         400058|     100000|
 N2T-WRAP >> +---------------+-----+-----------+---------------+-----------+
-
-
+{% endcodeblock %}
 
 Interestingly,  RC_AB is taking nearly 10000 clock cycles, and further investigation showed that the expf function was taking almost half of those.
 

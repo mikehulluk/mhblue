@@ -34,17 +34,17 @@ parameters, but there is variation in the network connectivity.
 In the first experiment, there is no NMDA and no electrical 
 coupling. Activity is not sustained after the initial current injection.
 
-![Alt text 1](week1/Voltage.png)
+![Alt text 1](images/week1/Voltage.png)
 
 In the second experiment, there are feedback NMDA synapses, but no 
 electrical coupling. Activity is sustained after the initial current 
 injection, but it is not synchronised and the variation in the 
 network connections mean it quickly becomes desynchronised.
 
-![Alt text 2](week1/Voltage_NMDA.png)
+![Alt text 2](images/week1/Voltage_NMDA.png)
 
 In the third experiment, there are feedback NMDA synapses and 
 electrical coupling between the neurons. Activity is sustained after the initial current 
 injection, but it is synchronised. 
 
-![Alt text 3](week1/Voltage_NMDA_EC.png)
+![Alt text 3](images/week1/Voltage_NMDA_EC.png)
