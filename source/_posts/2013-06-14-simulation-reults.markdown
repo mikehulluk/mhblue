@@ -27,8 +27,9 @@ If I turn on the core loop, it takes ~10mins to run.
 Below is some simulation traces from runnning on the NIOS.
 
 
-![week2/FriCPP_NIOS_ex1.png]
-![week2/FriCPP_NIOS_ex2.png]
+![Alt text](week2/FriCPP_NIOS_ex1.png)
+
+![Alt text](week2/FriCPP_NIOS_ex2.png)
 
 
 
